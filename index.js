@@ -1,32 +1,10 @@
-const express=require('express');
-const path=require('path');
-const users=require('./members');
-const moment=require('moment');
-const PORT =process.env.PORT || 8080;
+const express= require('express');
 
-const app=express();
+app=express();
 
-//a middleware
+app.set('port',process.env.PORT || 3000);
 
-const logger= (req,res,next)=>{
-    console.log(`${req.protocol}://${req.get('host')}${req.originalUrl}${moment().format()}`);
-    next();
-    
-};
-
-//makes a static directory 'public'
-app.use(express.static(path.join(__dirname,'public')));
-
-//init logger
-app.use(logger);
-
-//simple api route returns json 
-app.get('/api/members',(req,res)=>{
-  res.json(users);
-});
-
-//starts our server on the specified port
-app.listen(PORT,()=>{
-  console.log(`Server running on port ${PORT}`);
-
+app.listen(app.get('port'),()=>{
+   console.log("Server is running at port 3000");
+   
 });
