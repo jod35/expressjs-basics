@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/jod35/expressjs-basics/issues"
   },
-  "homepage": "https://github.com/jod35/expressjs-basics#readme"
+  "homepage": "https://github.com/jod35/expressjs-basics#readme",
+  "dependencies": {
+    "express3-handlebars": "^0.5.2"
+  }
 }

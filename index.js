@@ -1,23 +1,30 @@
 const express= require('express');
 
 const app=express();
+const handlebars= require('express3-handlebars')
+                  .create({defaultLayout:'main'});
+
+app.engine('handlebars',handlebars.engine);
+app.set('viewengine','handlebars');
 
 app.set('port',process.env.PORT || 3000);
 
 
 app.get('/',(req,res)=>{
-      res.send("Home");
+      res.render('home');
 });
 
 app.get('/about',(req,res)=>{
-  res.send("The About Page");
+  res.render('about');
 });
 
+
+//these are middleware functions
 //custom 404 route
 app.use((req,res)=>{
   res.type('text/plain');
   res.status(404);
-  res.send("404 Not Found");
+  res.render('404');
 });
 
 //custom 505 route
@@ -25,7 +32,7 @@ app.use((req,res)=>{
 app.use((err,req,res)=>{
  res.type('text/plain');
  res.status(500);
- res.send("Internal Server Error!")
+ res.render('505');
 });
 
 
