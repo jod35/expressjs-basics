@@ -1,12 +1,16 @@
 const express= require('express');
 
-app=express();
+const app=express();
 
 app.set('port',process.env.PORT || 3000);
 
-app.listen(app.get('port'),()=>{
-   console.log("Server is running at port 3000");
-   
+
+app.get('/',(req,res)=>{
+      res.send("Home");
+});
+
+app.get('/about',(req,res)=>{
+  res.send("The About Page");
 });
 
 //custom 404 route
@@ -23,3 +27,11 @@ app.use((err,req,res)=>{
  res.status(500);
  res.send("Internal Server Error!")
 });
+
+
+app.listen(app.get('port'),()=>{
+   console.log("Server is running at port 8080");
+   
+});
+
+
